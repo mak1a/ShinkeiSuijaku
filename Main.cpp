@@ -24,7 +24,7 @@ namespace Common {
 
     public:
         GameData() : m_isMasterClient(false) {
-            m_hashTable.put(L"gameType", L"photonSample");
+            m_hashTable.put(L"gameType", L"ShinkeiSuijaku");
         }
 
         ExitGames::Common::Hashtable& GetCustomProperties() {
@@ -86,7 +86,7 @@ namespace Sample {
         }
 
         void draw() const override {
-            const s3d::String titleText = U"Photonサンプル";
+            const s3d::String titleText = U"神経衰弱";
             const s3d::Vec2 center(s3d::Scene::Center().x, 120);
             s3d::FontAsset(U"Title")(titleText).drawAt(center.movedBy(4, 6), s3d::ColorF(0.0, 0.5));
             s3d::FontAsset(U"Title")(titleText).drawAt(center);
@@ -323,6 +323,7 @@ namespace Sample {
                 }
                 GetClient().opRaiseEvent(true, dic, EventCode::Game::init);
             }
+            s3d::ClearPrint();
         }
 
         void update() override {
@@ -376,7 +377,7 @@ namespace Sample {
                 m_pack(card.card).drawAt(card.pos, card.angle);
             }
             const s3d::String turn = (m_turn == Turn::Player) ? U"あなたのターンです : " : U"相手のターンです : ";
-            s3d::FontAsset(U"Menu")(turn + m_score).drawAt(s3d::Scene::CenterF().x, 40);
+            s3d::FontAsset(U"Menu")(turn, m_score).drawAt(s3d::Scene::CenterF().x, 40);
         }
     };
 }
@@ -384,7 +385,7 @@ namespace Sample {
 
 void Main() {
     // タイトルを設定
-    s3d::Window::SetTitle(U"Photonサンプル");
+    s3d::Window::SetTitle(U"神経衰弱");
 
     // ウィンドウの大きさを設定
     s3d::Window::Resize(1280, 720);
